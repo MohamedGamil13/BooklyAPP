@@ -12,19 +12,20 @@ class BookDetailsBody extends StatelessWidget {
     var width = MediaQuery.sizeOf(context).width * 0.23;
     return Column(
       children: [
-        CustomBookDetailsAppbar(),
+        const CustomBookDetailsAppbar(),
         Padding(
           padding: EdgeInsetsGeometry.symmetric(horizontal: width),
           child: FeaturedFilmsItem(),
         ),
         const SizedBox(height: 43),
-        Text('The Jungle Book', style: Styles.textStyle30),
+        const Text('The Jungle Book', style: Styles.textStyle30),
         const SizedBox(height: 6),
         Text(
           'Rudyard kipling',
           style: Styles.textStyle16.copyWith(color: Color(0xffb7b5bc)),
         ),
-        Center(child: BookRating()),
+        const SizedBox(height: 16),
+        const BookRating(mainAxisAlignment: MainAxisAlignment.center),
       ],
     );
   }
