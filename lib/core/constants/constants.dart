@@ -1,4 +1,4 @@
 import 'package:flutter/services.dart';
 
-const Color KPrimaryColor = Color(0xff100e23);
-const Duration Kduration = Duration(seconds: 2);
+const Color kPrimaryColor = Color(0xff100e23);
+const Duration kduration = Duration(seconds: 2);
