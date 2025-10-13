@@ -45,7 +45,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void initController() {
-    _controller = AnimationController(vsync: this, duration: Kduration);
+    _controller = AnimationController(vsync: this, duration: kduration);
 
     _fadeAnimation = Tween<double>(
       begin: 0,
@@ -67,7 +67,7 @@ void navigateToHome() {
     () => Get.to(
       () => HomeView(),
       transition: Transition.native,
-      duration: Kduration,
+      duration: kduration,
     ),
   );
 }

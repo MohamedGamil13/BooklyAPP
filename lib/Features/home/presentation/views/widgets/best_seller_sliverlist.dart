@@ -1,5 +1,8 @@
+import 'package:bookly_app/Features/home/presentation/views/book_details_view.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/best_seller_listview_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class BestSellerSliverlist extends StatelessWidget {
   const BestSellerSliverlist({super.key});
@@ -8,9 +11,14 @@ class BestSellerSliverlist extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) => const Padding(
+        (context, index) => Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          child: BestSellerListviewItem(),
+          child: GestureDetector(
+            child: BestSellerListviewItem(),
+            onTap: () {
+              Get.to(BookDetailsView(), transition: Transition.zoom);
+            },
+          ),
         ),
         childCount: 100,
       ),
