@@ -10,7 +10,10 @@ class FeaturedFilmsListview extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.28,
 
       child: ListView.builder(
-        itemBuilder: (context, index) => FeaturedFilmsItem(),
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: FeaturedFilmsItem(),
+        ),
         itemCount: 10,
         scrollDirection: Axis.horizontal,
       ),
