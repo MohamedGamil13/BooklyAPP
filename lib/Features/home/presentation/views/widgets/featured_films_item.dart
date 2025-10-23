@@ -10,7 +10,10 @@ class FeaturedFilmsItem extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          image: DecorationImage(image: NetworkImage(imageUrl)),
+          image: DecorationImage(
+            image: NetworkImage(imageUrl),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
