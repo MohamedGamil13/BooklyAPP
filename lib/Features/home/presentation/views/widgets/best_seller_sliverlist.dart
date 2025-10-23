@@ -1,5 +1,6 @@
 import 'package:bookly_app/Features/home/presentation/views/book_details_view.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/best_seller_listview_item.dart';
+import 'package:bookly_app/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -16,7 +17,11 @@ class BestSellerSliverlist extends StatelessWidget {
           child: GestureDetector(
             child: BestSellerListviewItem(),
             onTap: () {
-              Get.to(BookDetailsView(), transition: Transition.zoom);
+              Get.to(
+                BookDetailsView(),
+                transition: Transition.downToUp,
+                duration: kduration,
+              );
             },
           ),
         ),
