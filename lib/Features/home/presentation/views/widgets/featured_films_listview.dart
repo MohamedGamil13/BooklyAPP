@@ -19,7 +19,7 @@ class FeaturedFilmsListview extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: FeaturedFilmsItem(
                   imageUrl:
-                      state.books[index].volumeInfo.imageLinks.smallThumbnail,
+                      state.books[index].volumeInfo.imageLinks!.smallThumbnail,
                 ),
               ),
               itemCount: state.books.length,

@@ -1,10 +1,12 @@
+import 'package:bookly_app/Features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class BestSellerListviewItem extends StatelessWidget {
-  const BestSellerListviewItem({super.key});
+  const BestSellerListviewItem({super.key, required this.book});
+  final BookModel book;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class BestSellerListviewItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 image: DecorationImage(
-                  image: AssetImage(Assets.test),
+                  image: NetworkImage(book.volumeInfo.imageLinks!.thumbnail),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -32,25 +34,25 @@ class BestSellerListviewItem extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.widthOf(context) * 0.5,
                   child: Text(
-                    'Harry Poter and the Goblet of fire',
+                    book.volumeInfo.title,
                     style: Styles.textStyle20.copyWith(fontFamily: 'Lora'),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 const SizedBox(height: 3),
-                Text('J.K. Rowling', style: Styles.textStyle14),
+                Text(book.volumeInfo.publisher!, style: Styles.textStyle14),
                 const SizedBox(height: 3),
                 Row(
                   children: [
                     Text(
-                      '19.99 €',
+                      'Free',
                       style: Styles.textStyle20.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const Spacer(),
-                    const BookRating(),
+                    BookRating(rate: '5'),
                   ],
                 ),
               ],
