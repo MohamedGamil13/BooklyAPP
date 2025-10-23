@@ -8,11 +8,14 @@ class FeaturedFilmsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 3 / 4,
-      child: CachedNetworkImage(
-        progressIndicatorBuilder: (context, url, progress) =>
-            CircularProgressIndicator(),
-        fit: BoxFit.fill,
-        imageUrl: imageUrl,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: CachedNetworkImage(
+          progressIndicatorBuilder: (context, url, progress) =>
+              Center(child: CircularProgressIndicator()),
+          fit: BoxFit.fill,
+          imageUrl: imageUrl,
+        ),
       ),
     );
   }
