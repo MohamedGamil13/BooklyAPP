@@ -1,5 +1,4 @@
 import 'package:bookly_app/Features/home/presentation/views/widgets/book_actions.dart';
-import 'package:bookly_app/Features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/custom_book_details_appbar.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/featured_films_item.dart';
 import 'package:bookly_app/core/utils/styles.dart';

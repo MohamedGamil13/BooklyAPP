@@ -1,6 +1,5 @@
 import 'package:bookly_app/Features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/book_rating.dart';
-import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +51,6 @@ class BestSellerListviewItem extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    BookRating(rate: '5'),
                   ],
                 ),
               ],
