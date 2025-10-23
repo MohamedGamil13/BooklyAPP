@@ -1,3 +1,4 @@
+import 'package:bookly_app/Features/home/data/repos/home_repo_impl.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/featured_films_item.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,7 @@ class FeaturedFilmsListview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('==================================${books}');
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.28,
 
@@ -14,7 +16,7 @@ class FeaturedFilmsListview extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: FeaturedFilmsItem(),
         ),
-        itemCount: 10,
+        itemCount: books.length,
         scrollDirection: Axis.horizontal,
       ),
     );

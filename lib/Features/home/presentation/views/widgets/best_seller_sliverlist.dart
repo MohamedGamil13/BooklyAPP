@@ -19,7 +19,7 @@ class BestSellerSliverlist extends StatelessWidget {
             onTap: () {
               Get.to(
                 BookDetailsView(),
-                transition: Transition.downToUp,
+                transition: Transition.circularReveal,
                 duration: kduration,
               );
             },
