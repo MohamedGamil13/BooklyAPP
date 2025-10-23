@@ -5,8 +5,6 @@ import 'package:bookly_app/core/utils/api_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-List<BookModel> books = [];
-
 class HomeRepoImpl implements HomeRepo {
   final ApiService apiService;
   final String key = 'AIzaSyCtN5ciqu4PhwN8RPu3lsjF2aQy3fRbusg';
@@ -20,7 +18,7 @@ class HomeRepoImpl implements HomeRepo {
         endPoint:
             'volumes?q=programming&filter=free-ebooks&orderBy=newest&maxResults=20&key=$key',
       );
-
+      List<BookModel> books = [];
       for (var items in data['items']) {
         books.add(BookModel.fromJson(items));
       }
