@@ -24,7 +24,7 @@ class BestSellerSliverlist extends StatelessWidget {
                   child: BestSellerListviewItem(book: state.books[index]),
                   onTap: () {
                     Get.to(
-                      BookDetailsView(),
+                      BookDetailsView(book: state.books[index]),
                       transition: Transition.circularReveal,
                       duration: kduration,
                     );
