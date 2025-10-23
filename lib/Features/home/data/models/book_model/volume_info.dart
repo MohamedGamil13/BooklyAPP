@@ -6,7 +6,7 @@ import 'panelization_summary.dart';
 import 'reading_modes.dart';
 
 class VolumeInfo extends Equatable {
-  final String? title;
+  final String title;
   final List<String>? authors;
   final String? publisher;
   final String? publishedDate;
@@ -20,14 +20,14 @@ class VolumeInfo extends Equatable {
   final bool? allowAnonLogging;
   final String? contentVersion;
   final PanelizationSummary? panelizationSummary;
-  final ImageLinks imageLinks;
+  final ImageLinks? imageLinks;
   final String? language;
   final String? previewLink;
   final String? infoLink;
   final String? canonicalVolumeLink;
 
   const VolumeInfo({
-    this.title,
+    required this.title,
     this.authors,
     this.publisher,
     this.publishedDate,
@@ -41,7 +41,7 @@ class VolumeInfo extends Equatable {
     this.allowAnonLogging,
     this.contentVersion,
     this.panelizationSummary,
-    required this.imageLinks,
+    this.imageLinks,
     this.language,
     this.previewLink,
     this.infoLink,
@@ -49,9 +49,11 @@ class VolumeInfo extends Equatable {
   });
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
-    title: json['title'] as String?,
+    title: json['title'] as String,
     authors: (json['authors'] as List<dynamic>?)?.cast<String>(),
-    publisher: json['publisher'] as String?,
+    publisher: json['publisher'] != null
+        ? json['publisher'] as String
+        : 'Unknown Publisher',
     publishedDate: json['publishedDate'] as String?,
     description: json['description'] as String?,
     industryIdentifiers: (json['industryIdentifiers'] as List<dynamic>?)
@@ -71,7 +73,10 @@ class VolumeInfo extends Equatable {
         : PanelizationSummary.fromJson(
             json['panelizationSummary'] as Map<String, dynamic>,
           ),
-    imageLinks: ImageLinks.fromJson(json['imageLinks'] as Map<String, dynamic>),
+    imageLinks: json['imageLinks'] != null
+        ? ImageLinks.fromJson(json['imageLinks'] as Map<String, dynamic>)
+        : null,
+
     language: json['language'] as String?,
     previewLink: json['previewLink'] as String?,
     infoLink: json['infoLink'] as String?,

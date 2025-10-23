@@ -30,7 +30,7 @@ class DetailsSectionWidget extends StatelessWidget {
           style: Styles.textStyle16.copyWith(color: Color(0xffb7b5bc)),
         ),
         const SizedBox(height: 16),
-        const BookRating(mainAxisAlignment: MainAxisAlignment.center),
+        // const BookRating(mainAxisAlignment: MainAxisAlignment.center),
         const SizedBox(height: 37),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 35),
