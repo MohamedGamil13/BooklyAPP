@@ -18,11 +18,19 @@ class DetailsSectionWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsetsGeometry.symmetric(horizontal: width),
           child: FeaturedFilmsItem(
-            imageUrl: book.volumeInfo.imageLinks.toString(),
+            imageUrl:
+                book.volumeInfo.imageLinks?.thumbnail ??
+                'https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg',
           ),
         ),
         const SizedBox(height: 43),
-        Text(book.volumeInfo.title, style: Styles.textStyle30),
+        Text(
+          book.volumeInfo.title,
+          style: Styles.textStyle30,
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 3,
+        ),
         const SizedBox(height: 6),
         Text(
           book.volumeInfo.publisher.toString(),

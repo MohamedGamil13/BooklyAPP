@@ -1,8 +1,12 @@
+import 'package:bookly_app/Features/home/presentation/views/book_details_view.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/featured_films_item.dart';
 import 'package:bookly_app/Features/home/presentation/views_model/featured_bookCubit/featured_books_cubit.dart';
+import 'package:bookly_app/core/constants/constants.dart';
 import 'package:bookly_app/core/widgets/custom_progress_indector.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class FeaturedFilmsListview extends StatelessWidget {
   const FeaturedFilmsListview({super.key});
@@ -17,9 +21,21 @@ class FeaturedFilmsListview extends StatelessWidget {
             child: ListView.builder(
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: FeaturedFilmsItem(
-                  imageUrl:
-                      state.books[index].volumeInfo.imageLinks!.smallThumbnail,
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(
+                      BookDetailsView(book: state.books[index]),
+                      transition: Transition.circularReveal,
+                      duration: kduration,
+                    );
+                  },
+                  child: FeaturedFilmsItem(
+                    imageUrl: state
+                        .books[index]
+                        .volumeInfo
+                        .imageLinks!
+                        .smallThumbnail,
+                  ),
                 ),
               ),
               itemCount: state.books.length,
