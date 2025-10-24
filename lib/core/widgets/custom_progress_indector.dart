@@ -1,4 +1,3 @@
-import 'package:bookly_app/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomProgressIndector extends StatelessWidget {
@@ -6,6 +5,8 @@ class CustomProgressIndector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: const CircularProgressIndicator(color: kPrimaryColor));
+    return const Center(
+      child: CircularProgressIndicator(color: Color(0xffa29bfe)),
+    );
   }
 }

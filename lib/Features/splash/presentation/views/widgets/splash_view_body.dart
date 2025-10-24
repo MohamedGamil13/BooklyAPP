@@ -1,7 +1,10 @@
 import 'package:bookly_app/Features/home/presentation/views/home_view.dart';
+import 'package:bookly_app/Features/home/presentation/views_model/featured_bookCubit/featured_books_cubit.dart';
+import 'package:bookly_app/Features/home/presentation/views_model/new_booksCubit/new_books_cubit.dart';
 import 'package:bookly_app/core/constants/constants.dart';
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
@@ -22,6 +25,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     super.initState();
     initController();
+    context.read<FeaturedBooksCubit>().fetchFeaturedBooks();
+    context.read<NewBooksCubit>().fetchNewBooks();
     navigateToHome();
   }
 
