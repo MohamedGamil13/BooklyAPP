@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedFilmsItem extends StatelessWidget {
@@ -10,12 +11,7 @@ class FeaturedFilmsItem extends StatelessWidget {
       aspectRatio: 3 / 4,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
-        child: CachedNetworkImage(
-          progressIndicatorBuilder: (context, url, progress) =>
-              Center(child: CircularProgressIndicator()),
-          fit: BoxFit.fill,
-          imageUrl: imageUrl,
-        ),
+        child: CachedNetworkImage(fit: BoxFit.fill, imageUrl: imageUrl),
       ),
     );
   }

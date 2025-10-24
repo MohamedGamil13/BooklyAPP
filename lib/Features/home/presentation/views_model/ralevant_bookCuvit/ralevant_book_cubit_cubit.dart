@@ -10,7 +10,7 @@ class RalevantBookCubitCubit extends Cubit<RalevantBookCubitState> {
   final HomeRepo repo;
   Future<void> fetchRalevantBooks({required String category}) async {
     emit(RalevantBookCubitLoading());
-    var res = await repo.fecthNewstBooks();
+    var res = await repo.fecthRelaventBooks(category: category);
     res.fold(
       (failure) {
         emit(RalevantBookCubitFailure(failure.errorMassege));
