@@ -8,9 +8,9 @@ part 'new_books_state.dart';
 class NewBooksCubit extends Cubit<NewBooksState> {
   NewBooksCubit(this.repo) : super(NewBooksInitial());
   final HomeRepo repo;
-  Future<void> fetchNewBooks() async {
+  Future<void> fetchNewBooks([page = 0]) async {
     emit(NewBooksLoading());
-    var res = await repo.fecthNewstBooks();
+    var res = await repo.fecthNewstBooks(page);
     res.fold(
       (failure) {
         emit(NewBooksFailure(errorMassege: failure.errorMassege));

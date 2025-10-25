@@ -18,28 +18,39 @@ class FeaturedFilmsListview extends StatelessWidget {
         if (state is FeaturedBooksSucess) {
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.28,
-            child: ListView.builder(
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: GestureDetector(
-                  onTap: () {
-                    Get.to(
-                      BookDetailsView(book: state.books[index]),
-                      transition: Transition.circularReveal,
-                      duration: kduration,
-                    );
-                  },
-                  child: FeaturedFilmsItem(
-                    imageUrl: state
-                        .books[index]
-                        .volumeInfo
-                        .imageLinks!
-                        .smallThumbnail,
+            child: NotificationListener<ScrollMetricsNotification>(
+              onNotification: (notification) {
+                if (notification.metrics.pixels >=
+                    notification.metrics.maxScrollExtent * 0.7) {
+                  BlocProvider.of<FeaturedBooksCubit>(
+                    context,
+                  ).fetchFeaturedBooks();
+                }
+                return true;
+              },
+              child: ListView.builder(
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(
+                        BookDetailsView(book: state.books[index]),
+                        transition: Transition.circularReveal,
+                        duration: kduration,
+                      );
+                    },
+                    child: FeaturedFilmsItem(
+                      imageUrl: state
+                          .books[index]
+                          .volumeInfo
+                          .imageLinks!
+                          .smallThumbnail,
+                    ),
                   ),
                 ),
+                itemCount: state.books.length,
+                scrollDirection: Axis.horizontal,
               ),
-              itemCount: state.books.length,
-              scrollDirection: Axis.horizontal,
             ),
           );
         } else if (state is FeaturedBooksFailure) {

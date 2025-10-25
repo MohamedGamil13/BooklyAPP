@@ -8,16 +8,32 @@ part 'featured_books_state.dart';
 class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
   FeaturedBooksCubit(this.repo) : super(FeaturedBooksInitial());
   final HomeRepo repo;
+
+  List<BookModel> allBooks = [];
+  int currentPage = 0;
+  bool isLoadingMore = false;
+
   Future<void> fetchFeaturedBooks() async {
-    emit(FeaturedBooksLoading());
-    var res = await repo.fecthFeaturedBooks();
-    res.fold(
-      (failure) {
-        emit(FeaturedBooksFailure(errorMassege: failure.errorMassege));
-      },
-      (books) {
-        emit(FeaturedBooksSucess(books: books));
-      },
-    );
+    if (isLoadingMore) return;
+
+    try {
+      if (currentPage == 0) emit(FeaturedBooksLoading());
+      isLoadingMore = true;
+
+      var res = await repo.fecthFeaturedBooks(currentPage);
+
+      res.fold(
+        (failure) {
+          emit(FeaturedBooksFailure(errorMassege: failure.errorMassege));
+        },
+        (books) {
+          allBooks.addAll(books);
+          emit(FeaturedBooksSucess(books: allBooks));
+          currentPage++;
+        },
+      );
+    } finally {
+      isLoadingMore = false;
+    }
   }
 }

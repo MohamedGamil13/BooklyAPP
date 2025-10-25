@@ -12,66 +12,79 @@ class HomeRepoImpl implements HomeRepo {
   HomeRepoImpl({required this.apiService});
 
   @override
-  Future<Either<Failure, List<BookModel>>> fecthNewstBooks() async {
+  Future<Either<Failure, List<BookModel>>> fecthNewstBooks([
+    int page = 0,
+  ]) async {
+    final int startIndex = page * 40;
     try {
       final data = await apiService.get(
-        endPoint: 'volumes?q=flowers&orderBy=relevance&maxResults=40&key=$key',
+        endPoint:
+            'volumes?q=ui+ux+design&orderBy=newest&startIndex=$startIndex&maxResults=40&key=$key',
       );
-      List<BookModel> books = [];
-      for (var items in data['items']) {
-        books.add(BookModel.fromJson(items));
-      }
+
+      // ✅ لو مفيش كتب، ارجع ليست فاضية
+      if (data['items'] == null) return right([]);
+
+      final books = (data['items'] as List)
+          .map((item) => BookModel.fromJson(item))
+          .toList();
+
       return right(books);
-    } on Exception catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioError(e));
-      } else {
-        return left(ServerFailure(errorMassege: e.toString()));
-      }
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioError(e));
+    } catch (e) {
+      return left(ServerFailure(errorMassege: e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fecthFeaturedBooks() async {
+  Future<Either<Failure, List<BookModel>>> fecthFeaturedBooks([
+    int page = 0,
+  ]) async {
+    final int startIndex = page * 40;
     try {
       final data = await apiService.get(
         endPoint:
-            'volumes?q=ui+ux+design&orderBy=newest&maxResults=40&key=$key',
+            'volumes?q=featured+programming+books&orderBy=relevance&startIndex=$startIndex&maxResults=40&key=$key',
       );
-      List<BookModel> books = [];
-      for (var items in data['items']) {
-        books.add(BookModel.fromJson(items));
-      }
+
+      if (data['items'] == null) return right([]);
+
+      final books = (data['items'] as List)
+          .map((item) => BookModel.fromJson(item))
+          .toList();
+
       return right(books);
-    } on Exception catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioError(e));
-      } else {
-        return left(ServerFailure(errorMassege: e.toString()));
-      }
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioError(e));
+    } catch (e) {
+      return left(ServerFailure(errorMassege: e.toString()));
     }
   }
 
   @override
   Future<Either<Failure, List<BookModel>>> fecthRelaventBooks({
+    int page = 0,
     required String category,
   }) async {
+    final int startIndex = page * 40;
     try {
       final data = await apiService.get(
         endPoint:
-            'volumes?q=$category&orderBy=relevance&maxResults=40&key=$key',
+            'volumes?q=$category&orderBy=relevance&startIndex=$startIndex&maxResults=40&key=$key',
       );
-      List<BookModel> books = [];
-      for (var items in data['items']) {
-        books.add(BookModel.fromJson(items));
-      }
+
+      if (data['items'] == null) return right([]);
+
+      final books = (data['items'] as List)
+          .map((item) => BookModel.fromJson(item))
+          .toList();
+
       return right(books);
-    } on Exception catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioError(e));
-      } else {
-        return left(ServerFailure(errorMassege: e.toString()));
-      }
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioError(e));
+    } catch (e) {
+      return left(ServerFailure(errorMassege: e.toString()));
     }
   }
 }
