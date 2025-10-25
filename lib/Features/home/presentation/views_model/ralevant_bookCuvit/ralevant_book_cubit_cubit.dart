@@ -8,9 +8,9 @@ part 'ralevant_book_cubit_state.dart';
 class RalevantBookCubitCubit extends Cubit<RalevantBookCubitState> {
   RalevantBookCubitCubit(this.repo) : super(RalevantBookCubitInitial());
   final HomeRepo repo;
-  Future<void> fetchRalevantBooks({required String category}) async {
+  Future<void> fetchRalevantBooks({required String category, page = 0}) async {
     emit(RalevantBookCubitLoading());
-    var res = await repo.fecthRelaventBooks(category: category);
+    var res = await repo.fecthRelaventBooks(category: category, page: page);
     res.fold(
       (failure) {
         emit(RalevantBookCubitFailure(failure.errorMassege));
