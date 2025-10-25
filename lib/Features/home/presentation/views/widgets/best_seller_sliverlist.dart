@@ -16,22 +16,29 @@ class BestSellerSliverlist extends StatelessWidget {
     return BlocBuilder<NewBooksCubit, NewBooksState>(
       builder: (context, state) {
         if (state is NewBooksSucess) {
-          return SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                child: GestureDetector(
-                  child: BestSellerListviewItem(book: state.books[index]),
-                  onTap: () {
-                    Get.to(
+          return NotificationListener<ScrollNotification>(
+            onNotification: (notification) {
+              if (notification.metrics.pixels >=
+                  notification.metrics.maxScrollExtent * 0.7) {
+                BlocProvider.of<NewBooksCubit>(context).fetchNewBooks();
+              }
+              return true;
+            },
+            child: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  child: GestureDetector(
+                    child: BestSellerListviewItem(book: state.books[index]),
+                    onTap: () => Get.to(
                       BookDetailsView(book: state.books[index]),
                       transition: Transition.circularReveal,
                       duration: kduration,
-                    );
-                  },
+                    ),
+                  ),
                 ),
+                childCount: state.books.length,
               ),
-              childCount: state.books.length,
             ),
           );
         } else if (state is NewBooksFailure) {
@@ -41,5 +48,15 @@ class BestSellerSliverlist extends StatelessWidget {
         }
       },
     );
+  }
+
+  Function listNavigate(NewBooksSucess state, int index) {
+    return () {
+      Get.to(
+        BookDetailsView(book: state.books[index]),
+        transition: Transition.circularReveal,
+        duration: kduration,
+      );
+    };
   }
 }
