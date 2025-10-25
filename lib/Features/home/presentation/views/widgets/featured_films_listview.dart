@@ -18,7 +18,7 @@ class FeaturedFilmsListview extends StatelessWidget {
         if (state is FeaturedBooksSucess) {
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.28,
-            child: NotificationListener<ScrollMetricsNotification>(
+            child: NotificationListener<ScrollNotification>(
               onNotification: (notification) {
                 if (notification.metrics.pixels >=
                     notification.metrics.maxScrollExtent * 0.7) {
@@ -54,7 +54,7 @@ class FeaturedFilmsListview extends StatelessWidget {
             ),
           );
         } else if (state is FeaturedBooksFailure) {
-          return Text('error');
+          return Text("OPPS ${state.errorMassege}");
         } else {
           return CustomProgressIndector();
         }

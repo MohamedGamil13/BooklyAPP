@@ -44,7 +44,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       final data = await apiService.get(
         endPoint:
-            'volumes?q=featured+programming+books&orderBy=relevance&startIndex=$startIndex&maxResults=40&key=$key',
+            'volumes?q=featured+Design+books&orderBy=relevance&startIndex=$startIndex&maxResults=40&key=$key',
       );
 
       if (data['items'] == null) return right([]);

@@ -28,7 +28,7 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
         },
         (books) {
           allBooks.addAll(books);
-          emit(FeaturedBooksSucess(books: allBooks));
+          emit(FeaturedBooksSucess(books: List.from(allBooks)));
           currentPage++;
         },
       );
