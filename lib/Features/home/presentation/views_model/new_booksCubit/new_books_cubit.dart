@@ -7,17 +7,34 @@ part 'new_books_state.dart';
 
 class NewBooksCubit extends Cubit<NewBooksState> {
   NewBooksCubit(this.repo) : super(NewBooksInitial());
+
   final HomeRepo repo;
-  Future<void> fetchNewBooks([page = 0]) async {
-    emit(NewBooksLoading());
-    var res = await repo.fecthNewstBooks(page);
-    res.fold(
-      (failure) {
-        emit(NewBooksFailure(errorMassege: failure.errorMassege));
-      },
-      (books) {
-        emit(NewBooksSucess(books: books));
-      },
-    );
+
+  List<BookModel> allBooks = [];
+  int currentPage = 0;
+  bool isLoadingMore = false;
+
+  Future<void> fetchNewBooks() async {
+    if (isLoadingMore) return;
+
+    try {
+      if (currentPage == 0) emit(NewBooksLoading());
+      isLoadingMore = true;
+
+      var res = await repo.fecthNewstBooks(currentPage);
+
+      res.fold(
+        (failure) {
+          emit(NewBooksFailure(errorMassege: failure.errorMassege));
+        },
+        (books) {
+          allBooks.addAll(books);
+          emit(NewBooksSucess(books: allBooks));
+          currentPage++;
+        },
+      );
+    } finally {
+      isLoadingMore = false;
+    }
   }
 }
