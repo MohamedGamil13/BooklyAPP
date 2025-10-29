@@ -29,6 +29,7 @@ class FeaturedFilmsListview extends StatelessWidget {
                 return true;
               },
               child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: GestureDetector(
@@ -40,11 +41,13 @@ class FeaturedFilmsListview extends StatelessWidget {
                       );
                     },
                     child: FeaturedFilmsItem(
-                      imageUrl: state
-                          .books[index]
-                          .volumeInfo
-                          .imageLinks!
-                          .smallThumbnail,
+                      imageUrl:
+                          state
+                              .books[index]
+                              .volumeInfo
+                              .imageLinks
+                              ?.smallThumbnail ??
+                          '',
                     ),
                   ),
                 ),
