@@ -19,7 +19,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       final data = await apiService.get(
         endPoint:
-            'volumes?q=ui+ux+design&orderBy=newest&startIndex=$startIndex&maxResults=40&key=$key',
+            'volumes?q=sexual+education+health&orderBy=relevance&startIndex=$startIndex&maxResults=40&key=$key',
       );
 
       if (data['items'] == null) return right([]);
@@ -44,7 +44,7 @@ class HomeRepoImpl implements HomeRepo {
     try {
       final data = await apiService.get(
         endPoint:
-            'volumes?q=featured+Design+books&orderBy=relevance&startIndex=$startIndex&maxResults=40&key=$key',
+            'volumes?q=movies&orderBy=relevance&startIndex=$startIndex&maxResults=40&key=$key',
       );
 
       if (data['items'] == null) return right([]);
