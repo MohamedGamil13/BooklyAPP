@@ -4,21 +4,27 @@ sealed class FeaturedBooksState extends Equatable {
   const FeaturedBooksState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 final class FeaturedBooksInitial extends FeaturedBooksState {}
 
 final class FeaturedBooksLoading extends FeaturedBooksState {}
 
-final class FeaturedBooksSucess extends FeaturedBooksState {
+final class FeaturedBooksSuccess extends FeaturedBooksState {
   final List<BookModel> books;
 
-  const FeaturedBooksSucess({required this.books});
+  const FeaturedBooksSuccess({required this.books});
+
+  @override
+  List<Object?> get props => [books];
 }
 
 final class FeaturedBooksFailure extends FeaturedBooksState {
-  final String errorMassege;
+  final String errorMessage;
 
-  const FeaturedBooksFailure({required this.errorMassege});
+  const FeaturedBooksFailure({required this.errorMessage});
+
+  @override
+  List<Object?> get props => [errorMessage];
 }
