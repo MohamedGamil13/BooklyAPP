@@ -43,11 +43,9 @@ class BestSellerSliverlist extends StatelessWidget {
           );
         } else if (state is NewBooksFailure) {
           return SliverToBoxAdapter(
-            child: Center(
-              child: Text(
-                "Internet connection Error",
-                style: Styles.textStyle24,
-              ),
+            child: Text(
+              "Error: ${state.errorMassege}",
+              style: Styles.textStyle24,
             ),
           );
         } else {
