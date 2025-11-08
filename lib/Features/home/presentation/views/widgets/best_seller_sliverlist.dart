@@ -2,6 +2,7 @@ import 'package:bookly_app/Features/home/presentation/views/book_details_view.da
 import 'package:bookly_app/Features/home/presentation/views/widgets/best_seller_listview_item.dart';
 import 'package:bookly_app/Features/home/presentation/views_model/new_booksCubit/new_books_cubit.dart';
 import 'package:bookly_app/core/constants/constants.dart';
+import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/core/widgets/custom_progress_indector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
@@ -41,7 +42,14 @@ class BestSellerSliverlist extends StatelessWidget {
             ),
           );
         } else if (state is NewBooksFailure) {
-          return SliverToBoxAdapter(child: Text("failure"));
+          return SliverToBoxAdapter(
+            child: Center(
+              child: Text(
+                "Internet connection Error",
+                style: Styles.textStyle24,
+              ),
+            ),
+          );
         } else {
           return SliverToBoxAdapter(child: CustomProgressIndector());
         }
