@@ -1,3 +1,4 @@
+import 'package:bookly_app/Features/search/presentation/views/widgets/custom_search_appbar.dart';
 import 'package:flutter/material.dart';
 
 class SearchView extends StatelessWidget {
@@ -5,6 +6,6 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(body: CustomSearchAppbar());
   }
 }
