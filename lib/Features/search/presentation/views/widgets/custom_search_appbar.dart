@@ -1,6 +1,7 @@
+import 'package:bookly_app/Features/search/presentation/views_model/search_cubit/search_cubit.dart';
 import 'package:bookly_app/core/utils/styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomSearchAppbar extends StatelessWidget {
   const CustomSearchAppbar({super.key});
@@ -11,7 +12,11 @@ class CustomSearchAppbar extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: TextField(
-          onSubmitted: (input) {},
+          onSubmitted: (input) {
+            if (input.trim().isNotEmpty) {
+              context.read<SearchCubit>().searchBooks(input.trim());
+            }
+          },
           style: Styles.textStyle20,
           decoration: InputDecoration(
             filled: true,
