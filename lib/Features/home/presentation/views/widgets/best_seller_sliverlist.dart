@@ -10,7 +10,6 @@ import 'package:get/get_navigation/get_navigation.dart';
 
 class BestSellerSliverlist extends StatelessWidget {
   const BestSellerSliverlist({super.key});
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NewBooksCubit, NewBooksState>(
@@ -32,8 +31,8 @@ class BestSellerSliverlist extends StatelessWidget {
                     child: BestSellerListviewItem(book: state.books[index]),
                     onTap: () => Get.to(
                       BookDetailsView(book: state.books[index]),
-                      transition: Transition.circularReveal,
                       duration: kduration,
+                      transition: Transition.circularReveal,
                     ),
                   ),
                 ),
