@@ -34,11 +34,11 @@ flutter_icons:
   ios: true
   image_path: "assets/images/splashLogo.jpeg"
 
-# flutter_native_splash:
-#   color: "#ffffff"
-#   image: "assets/images/splashLogo.jpeg"
-#   android_gravity: fill
-#   ios_content_mode: scaleAspectFill
+flutter_native_splash:
+  color: "#ffffff"
+  background_image: "assets/images/splashLogo.jpeg"
+  android_gravity: fill
+  ios_content_mode: scaleAspectFill
 
 
 flutter:
